@@ -1,0 +1,21 @@
+#
+# Docker environment.
+#
+---
+
+version: '3.8'
+
+networks:
+    docker-network:
+        name: docker-network
+        driver: bridge
+
+services:
+    web:
+        hostname: 'apache-tika'
+        image: apache/tika
+        ports:
+            - ${LISTEN_PORT}:9998
+        networks:
+            - 'docker-network'
+        restart: on-failure
